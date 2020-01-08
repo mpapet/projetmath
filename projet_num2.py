@@ -1,16 +1,14 @@
 ##Schéma Euler ordre 1
 import matplotlib.pyplot as plt
-def solve_euler_explicit(f, x0, dt):
-    x=[x0]
-    t=[0]
-    while t[-1]<10**2: #condition de fin
+import numpy as np 
+def solve_euler_explicit(f, x0, dt, t_max = 100):
+    x=np.array(x0)
+    t=np.array(0)
+    while t[-1]< t_max: #condition de fin
         xj=x[-1]
         tj=t[-1]
         x.append(xj+dt*f(xj))
         t.append(tj+dt)
-
-
-
     return t, x
 
 #teste sur une fonction connue
@@ -25,13 +23,13 @@ plt.show()
 
 ##Méthode de Heun ordre 2
 
-def solve_heun(f,x0,dt):
-    x=[x0]
-    t=[0]
-    while t[-1] <10**2:
+def solve_heun(f,x0,dt, t_max):
+    x=np.array(x0)
+    t=np.array(0)
+    while t[-1] < t_max:
         xj=x[-1]
         tj=t[-1]
-        x_appprox=xj+f(xj)*dt
+        x_approx=xj+f(xj)*dt
         x.append(xj+(dt/2)*(f(xj)+x_approx))
         t.append(tj+dt)
     return t,x
